@@ -3,10 +3,7 @@ package com.driver;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -72,4 +69,12 @@ public class MovieRepository {
     }
 
 
+    public void delete(String movie) {
+        movieMap.remove(movie);
+    }
+
+    public List<String> getAllDirectors() {
+        return new ArrayList<>(directorMap.keySet());
+
+    }
 }

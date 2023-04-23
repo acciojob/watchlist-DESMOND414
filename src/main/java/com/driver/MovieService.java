@@ -81,13 +81,13 @@ public class MovieService {
         Optional<Director> optionalDirector = movieRepository.findDirectorByName(directorName);
 
         if (optionalDirector.isPresent()) {
-//            Director director = optionalDirector.get();
-//            List<Movie> movies = director.findAllMovies();
-//
-//            // Delete all movies associated with this director
-//            for (Movie movie : movies) {
-//                movieRepository.delete(movie);
-//            }
+            Director director = optionalDirector.get();
+            List<String> movies = movieRepository.getMoviesByDirectorName(directorName);
+
+            // Delete all movies associated with this director
+            for (String movie : movies) {
+                movieRepository.delete(movie);
+            }
 
             // Delete the director itself
             movieRepository.deleteDirectorByName(directorName);
@@ -107,9 +107,13 @@ public class MovieService {
 //                movieRepository.delete(movie);
 //            }
 //        }
-
+        List<String> directors=movieRepository.getAllDirectors();
+        for(String directorsName: directors){
+            deleteDirectorByName(directorsName);
+        }
         // Delete all directors
-        movieRepository.deleteAllDirectors();
+//        movieRepository.getAllDirectors();
+//        movieRepository.deleteAllDirectors();
     }
 
 }
